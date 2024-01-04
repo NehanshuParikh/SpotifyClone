@@ -80,7 +80,7 @@ const playMusic = (track, pause = false) => {
 
     if (!pause) {
         currentSong.play();
-        play.src = "./Media/pause.svg";
+        play.src = "./media/pause.svg";
     }
 
     document.querySelector("#song-info").innerHTML = decodeURI(track || "Start A Song");
