@@ -18,7 +18,7 @@ function secondsToMinutes(seconds) {
 
 async function getSongs(folder) {
     currentFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`./${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response; // Fix the typo here
@@ -27,7 +27,7 @@ async function getSongs(folder) {
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split(`/${folder}/`)[1]);
+            songs.push(element.href.split(`./${folder}/`)[1]);
         }
     }
     // showing all the songs in the playlist section
@@ -89,7 +89,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-    let a = await fetch(`/songs/`);
+    let a = await fetch(`./songs/`);
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -152,7 +152,7 @@ displayAlbums();
 async function main() {
 
     // getting list of all the songs
-    await getSongs(`songs/Neffex`);
+    await getSongs(`.songs/${currentFolder}`);
     playMusic(songs[0], true)
 
     // displaying all the albums on page
