@@ -152,7 +152,7 @@ displayAlbums();
 async function main() {
 
     // getting list of all the songs
-    await getSongs(`songs/${currentFolder}`);
+    await getSongs(`songs/Neffex`);
     playMusic(songs[0], true)
 
     // displaying all the albums on page
