@@ -80,7 +80,7 @@ const playMusic = (track, pause = false) => {
 
     if (!pause) {
         currentSong.play();
-        play.src = "./Media/pause.svg";
+        play.src = "./media/pause.svg";
     }
 
     document.querySelector("#song-info").innerHTML = decodeURI(track || "Start A Song");
@@ -162,10 +162,10 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play();
-            play.src = "./Media/pause.svg";
+            play.src = "./media/pause.svg";
         } else {
             currentSong.pause()
-            play.src = "./Media/play.svg";
+            play.src = "./media/play.svg";
         }
     })
 
