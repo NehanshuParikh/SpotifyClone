@@ -49,10 +49,10 @@ async function getSongs(folder) {
     Array.from(document.querySelector("#songslist ol").children).forEach(e => {
         e.addEventListener("click", element => {
 
-            playMusic(e.querySelector("#info").firstElementChild.innerHTML);
+            playMusic(e.querySelector("#info").firstElementChild.innerHTML.trim());
         })
     });
-
+    return songs;
 }
 
 let currentSongIndex = 0;
@@ -101,10 +101,10 @@ async function displayAlbums() {
     cardContainer.innerHTML = '';
 
     Array.from(anchors).forEach(async (e) => {
-        if (e.href.includes("/songs")) {
+        if (e.href.includes("/songs") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-2)[1];
             // Get the metadata of the folder
-            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
+            let a = await fetch(`/songs/${folder}/info.json`);
             let response = await a.json();
 
             // Use class instead of id for multiple cards
