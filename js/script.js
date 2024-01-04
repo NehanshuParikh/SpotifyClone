@@ -49,7 +49,7 @@ async function getSongs(folder) {
     Array.from(document.querySelector("#songslist ol").children).forEach(e => {
         e.addEventListener("click", element => {
 
-            playMusic(e.querySelector("#info").firstElementChild.innerHTML.trim());
+            playMusic(e.querySelector("#info").firstElementChild.innerHTML);
         })
     });
     return songs;
@@ -80,7 +80,7 @@ const playMusic = (track, pause = false) => {
 
     if (!pause) {
         currentSong.play();
-        play.src = "./media/pause.svg";
+        play.src = "........../media/pause.svg";
     }
 
     document.querySelector("#song-info").innerHTML = decodeURI(track || "Start A Song");
@@ -162,7 +162,7 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play();
-            play.src = "./media/pause.svg";
+            play.src = "........../media/pause.svg";
         } else {
             currentSong.pause()
             play.src = "./media/play.svg";
