@@ -130,7 +130,7 @@ async function displayAlbums() {
 
         if (card) {
             console.log("Fetching Songs");
-            const songs = await getSongs(`songs/${card.dataset.folder}`);
+            const songs = await getSongs(`songs/${item.dataset.folder}`);
             playMusic(songs[0]);
         }
         document.querySelector("#left").style.left = "0"
