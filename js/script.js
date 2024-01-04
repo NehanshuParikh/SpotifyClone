@@ -18,7 +18,7 @@ function secondsToMinutes(seconds) {
 
 async function getSongs(folder) {
     currentFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response; // Fix the typo here
@@ -89,7 +89,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-    let a = await fetch(`http://127.0.0.1:5500/songs/`);
+    let a = await fetch(`/songs/`);
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
