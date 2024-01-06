@@ -54,6 +54,8 @@ async function getSongs(folder) {
         })
     });
 
+    return songs;
+
 }
 
 let currentSongIndex = 0;
