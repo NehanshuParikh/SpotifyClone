@@ -1,6 +1,7 @@
 let currentSong = new Audio();
 let songs;
 let currentFolder;
+let folder = "Neffex"
 
 function secondsToMinutes(seconds) {
     if (isNaN(seconds) || seconds < 0) {
@@ -89,40 +90,40 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-    let a = await fetch(`/songs/`);
-    let response = await a.text();
-    let div = document.createElement("div")
-    div.innerHTML = response;
-    let anchors = div.getElementsByTagName("a")
+    // let a = await fetch(`/${folder}/`);
+    // let response = await a.text();
+    // let div = document.createElement("div")
+    // div.innerHTML = response;
+    // let anchors = div.getElementsByTagName("a")
     let cardContainer = document.querySelector("#card-container");
 
 
     // Clear the existing content before adding new cards
-    cardContainer.innerHTML = '';
+    // cardContainer.innerHTML = '';
 
-    Array.from(anchors).forEach(async (e) => {
-        if (e.href.includes("/songs")) {
-            let folder = e.href.split("/").slice(-2)[1];
-            // Get the metadata of the folder
-            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
-            let response = await a.json();
+    // Array.from(anchors).forEach(async (e) => {
+    //     if (e.href.includes("/songs")) {
+    //         let folder = e.href.split("/").slice(-2)[1];
+    //         // Get the metadata of the folder
+    //         let b = await fetch(`/songs/${folder}/info.json`);
+    //         let response = await b.json();
 
-            // Use class instead of id for multiple cards
-            cardContainer.innerHTML +=
-                `<div data-folder="${folder}" class="card">
-                <div class="play-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5"
-                            stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <img src="/songs/${folder}/cover.jpg" alt="">
-                <h3>${response.title}</h3>
-                <p>${response.description}</p>
-            </div>`;
-        }
-    });
+    //         // Use class instead of id for multiple cards
+    //         cardContainer.innerHTML +=
+    //             `<div data-folder="${folder}" class="card">
+    //             <div class="play-btn">
+    //                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+    //                     xmlns="http://www.w3.org/2000/svg">
+    //                     <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5"
+    //                         stroke-linejoin="round" />
+    //                 </svg>
+    //             </div>
+    //             <img src="/songs/${folder}/cover.jpg" alt="">
+    //             <h3>${response.title}</h3>
+    //             <p>${response.description}</p>
+    //         </div>`;
+    //     }
+    // });
 
     // Load the playlist whenever a card is clicked
     cardContainer.addEventListener("click", async (event) => {
@@ -144,28 +145,26 @@ async function displayAlbums() {
 
 }
 
-// Call the function to display albums
-displayAlbums();
-
 
 
 async function main() {
 
     // getting list of all the songs
-    await getSongs(`songs/${currentFolder}`);
+    await getSongs(`songs/Neffex`);
     playMusic(songs[0], true)
 
     // displaying all the albums on page
     displayAlbums()
 
+
     // attach an event listener to play next and prev
-    play.addEventListener("click", () => {
+    document.querySelector("#play").addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play();
-            play.src = "./media/pause.svg";
+            play.src = "../media/pause.svg";
         } else {
             currentSong.pause()
-            play.src = "./media/play.svg";
+            play.src = "../media/play.svg";
         }
     })
 
